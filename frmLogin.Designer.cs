@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmLogin));
-            this.button3 = new System.Windows.Forms.Button();
+            this.butDoiMatKhau = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.butThoat = new System.Windows.Forms.Button();
             this.butDangNhap = new System.Windows.Forms.Button();
@@ -42,15 +42,16 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
-            // button3
+            // butDoiMatKhau
             // 
-            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(813, 435);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(108, 29);
-            this.button3.TabIndex = 20;
-            this.button3.Text = "Đổi mật khẩu";
-            this.button3.UseVisualStyleBackColor = true;
+            this.butDoiMatKhau.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.butDoiMatKhau.Location = new System.Drawing.Point(813, 435);
+            this.butDoiMatKhau.Name = "butDoiMatKhau";
+            this.butDoiMatKhau.Size = new System.Drawing.Size(108, 29);
+            this.butDoiMatKhau.TabIndex = 20;
+            this.butDoiMatKhau.Text = "Đổi mật khẩu";
+            this.butDoiMatKhau.UseVisualStyleBackColor = true;
+            this.butDoiMatKhau.Click += new System.EventHandler(this.butDoiMatKhau_Click);
             // 
             // pictureBox1
             // 
@@ -152,7 +153,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FloralWhite;
             this.ClientSize = new System.Drawing.Size(979, 518);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.butDoiMatKhau);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.butThoat);
             this.Controls.Add(this.butDangNhap);
@@ -165,6 +166,8 @@
             this.Name = "frmLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmLogin_FormClosing);
+            this.Load += new System.EventHandler(this.frmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -173,7 +176,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button butDoiMatKhau;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button butThoat;
         private System.Windows.Forms.Button butDangNhap;

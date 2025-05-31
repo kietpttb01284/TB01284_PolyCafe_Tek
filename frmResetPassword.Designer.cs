@@ -54,6 +54,7 @@
             this.rbut_HTMatKhauMoi.TabStop = true;
             this.rbut_HTMatKhauMoi.Text = "Hiển thị";
             this.rbut_HTMatKhauMoi.UseVisualStyleBackColor = true;
+            this.rbut_HTMatKhauMoi.CheckedChanged += new System.EventHandler(this.rbut_HTMatKhauMoi_CheckedChanged);
             // 
             // rbut_HTXacNhanMatKhau
             // 
@@ -65,6 +66,7 @@
             this.rbut_HTXacNhanMatKhau.TabStop = true;
             this.rbut_HTXacNhanMatKhau.Text = "Hiển thị";
             this.rbut_HTXacNhanMatKhau.UseVisualStyleBackColor = true;
+            this.rbut_HTXacNhanMatKhau.CheckedChanged += new System.EventHandler(this.rbut_HTXacNhanMatKhau_CheckedChanged);
             // 
             // rbut_HTMatKhauCu
             // 
@@ -76,6 +78,7 @@
             this.rbut_HTMatKhauCu.TabStop = true;
             this.rbut_HTMatKhauCu.Text = "Hiển thị";
             this.rbut_HTMatKhauCu.UseVisualStyleBackColor = true;
+            this.rbut_HTMatKhauCu.CheckedChanged += new System.EventHandler(this.rbut_HTMatKhauCu_CheckedChanged);
             // 
             // but_ThoatDoiMatKhau
             // 
@@ -87,6 +90,7 @@
             this.but_ThoatDoiMatKhau.TabIndex = 26;
             this.but_ThoatDoiMatKhau.Text = "Thoát";
             this.but_ThoatDoiMatKhau.UseVisualStyleBackColor = false;
+            this.but_ThoatDoiMatKhau.Click += new System.EventHandler(this.but_ThoatDoiMatKhau_Click);
             // 
             // but_DoiMatKhau
             // 
@@ -98,6 +102,7 @@
             this.but_DoiMatKhau.TabIndex = 25;
             this.but_DoiMatKhau.Text = "Đổi mật khẩu";
             this.but_DoiMatKhau.UseVisualStyleBackColor = false;
+            this.but_DoiMatKhau.Click += new System.EventHandler(this.but_DoiMatKhau_Click);
             // 
             // label5
             // 
@@ -204,6 +209,7 @@
             this.Name = "frmResetPassword";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "frmResetPassword";
+            this.Load += new System.EventHandler(this.frmResetPassword_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

@@ -1,4 +1,6 @@
-﻿namespace TB01284_PolyCafe
+﻿using System.Windows.Forms;
+
+namespace TB01284_PolyCafe
 {
     partial class frmNhanVien
     {
@@ -29,6 +31,8 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtXacNhanMatKhau = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.rbutTrangThai2 = new System.Windows.Forms.RadioButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.rbutQuanLi = new System.Windows.Forms.RadioButton();
@@ -49,14 +53,12 @@
             this.backgroundWorker2 = new System.ComponentModel.BackgroundWorker();
             this.DataNhanVien = new System.Windows.Forms.DataGridView();
             this.label10 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.txtTimKiem = new System.Windows.Forms.TextBox();
             this.butThem = new System.Windows.Forms.Button();
             this.butLamMoi = new System.Windows.Forms.Button();
             this.butXoa = new System.Windows.Forms.Button();
             this.butSua = new System.Windows.Forms.Button();
             this.butTimKiemnhanVien = new System.Windows.Forms.Button();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtXacNhanMatKhau = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DataNhanVien)).BeginInit();
@@ -84,6 +86,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhân viên";
+            // 
+            // txtXacNhanMatKhau
+            // 
+            this.txtXacNhanMatKhau.Location = new System.Drawing.Point(770, 75);
+            this.txtXacNhanMatKhau.Name = "txtXacNhanMatKhau";
+            this.txtXacNhanMatKhau.Size = new System.Drawing.Size(163, 22);
+            this.txtXacNhanMatKhau.TabIndex = 24;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label5.Location = new System.Drawing.Point(694, 79);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 18);
+            this.label5.TabIndex = 23;
+            this.label5.Text = "Xác nhận";
             // 
             // rbutTrangThai2
             // 
@@ -249,13 +268,17 @@
             // 
             // DataNhanVien
             // 
+            this.DataNhanVien.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.DataNhanVien.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.DataNhanVien.Location = new System.Drawing.Point(12, 240);
             this.DataNhanVien.Name = "DataNhanVien";
+            this.DataNhanVien.ReadOnly = true;
             this.DataNhanVien.RowHeadersWidth = 51;
             this.DataNhanVien.RowTemplate.Height = 24;
             this.DataNhanVien.Size = new System.Drawing.Size(1226, 353);
             this.DataNhanVien.TabIndex = 1;
+            this.DataNhanVien.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataNhanVien_CellContentClick);
+            this.DataNhanVien.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DataNhanVien_CellDoubleClick);
             // 
             // label10
             // 
@@ -270,16 +293,16 @@
             this.label10.TabIndex = 19;
             this.label10.Text = "Quản lí nhân viên";
             // 
-            // textBox1
+            // txtTimKiem
             // 
-            this.textBox1.Location = new System.Drawing.Point(958, 18);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(269, 22);
-            this.textBox1.TabIndex = 19;
+            this.txtTimKiem.Location = new System.Drawing.Point(958, 18);
+            this.txtTimKiem.Name = "txtTimKiem";
+            this.txtTimKiem.Size = new System.Drawing.Size(269, 22);
+            this.txtTimKiem.TabIndex = 19;
             // 
             // butThem
             // 
-            this.butThem.Location = new System.Drawing.Point(32, 193);
+            this.butThem.Location = new System.Drawing.Point(29, 193);
             this.butThem.Name = "butThem";
             this.butThem.Size = new System.Drawing.Size(127, 41);
             this.butThem.TabIndex = 20;
@@ -289,7 +312,7 @@
             // 
             // butLamMoi
             // 
-            this.butLamMoi.Location = new System.Drawing.Point(532, 193);
+            this.butLamMoi.Location = new System.Drawing.Point(527, 193);
             this.butLamMoi.Name = "butLamMoi";
             this.butLamMoi.Size = new System.Drawing.Size(127, 41);
             this.butLamMoi.TabIndex = 21;
@@ -299,21 +322,23 @@
             // 
             // butXoa
             // 
-            this.butXoa.Location = new System.Drawing.Point(363, 193);
+            this.butXoa.Location = new System.Drawing.Point(358, 193);
             this.butXoa.Name = "butXoa";
             this.butXoa.Size = new System.Drawing.Size(127, 41);
             this.butXoa.TabIndex = 22;
             this.butXoa.Text = "Xóa";
             this.butXoa.UseVisualStyleBackColor = true;
+            this.butXoa.Click += new System.EventHandler(this.butXoa_Click);
             // 
             // butSua
             // 
-            this.butSua.Location = new System.Drawing.Point(192, 193);
+            this.butSua.Location = new System.Drawing.Point(194, 193);
             this.butSua.Name = "butSua";
             this.butSua.Size = new System.Drawing.Size(127, 41);
             this.butSua.TabIndex = 23;
             this.butSua.Text = "Sửa";
             this.butSua.UseVisualStyleBackColor = true;
+            this.butSua.Click += new System.EventHandler(this.butSua_Click);
             // 
             // butTimKiemnhanVien
             // 
@@ -323,23 +348,7 @@
             this.butTimKiemnhanVien.TabIndex = 24;
             this.butTimKiemnhanVien.Text = "Tìm kiếm";
             this.butTimKiemnhanVien.UseVisualStyleBackColor = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(694, 79);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 18);
-            this.label5.TabIndex = 23;
-            this.label5.Text = "Xác nhận";
-            // 
-            // txtXacNhanMatKhau
-            // 
-            this.txtXacNhanMatKhau.Location = new System.Drawing.Point(770, 75);
-            this.txtXacNhanMatKhau.Name = "txtXacNhanMatKhau";
-            this.txtXacNhanMatKhau.Size = new System.Drawing.Size(163, 22);
-            this.txtXacNhanMatKhau.TabIndex = 24;
+            this.butTimKiemnhanVien.Click += new System.EventHandler(this.butTimKiemnhanVien_Click);
             // 
             // frmNhanVien
             // 
@@ -352,7 +361,7 @@
             this.Controls.Add(this.butXoa);
             this.Controls.Add(this.butLamMoi);
             this.Controls.Add(this.butThem);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.txtTimKiem);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.DataNhanVien);
             this.Controls.Add(this.groupBox1);
@@ -385,7 +394,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox txtMatKhau;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox txtTimKiem;
         private System.Windows.Forms.Button butThem;
         private System.Windows.Forms.Button butLamMoi;
         private System.Windows.Forms.Button butXoa;

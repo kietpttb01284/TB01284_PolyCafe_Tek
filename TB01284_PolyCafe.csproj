@@ -64,11 +64,29 @@
     <Compile Include="frmNhanVien.Designer.cs">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmPhieuBanHang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPhieuBanHang.Designer.cs">
+      <DependentUpon>frmPhieuBanHang.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmResetPassword.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="frmResetPassword.Designer.cs">
       <DependentUpon>frmResetPassword.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmSanPham.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSanPham.Designer.cs">
+      <DependentUpon>frmSanPham.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmTheLuuDong.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmTheLuuDong.Designer.cs">
+      <DependentUpon>frmTheLuuDong.cs</DependentUpon>
     </Compile>
     <Compile Include="frmWelcome.cs">
       <SubType>Form</SubType>
@@ -87,8 +105,17 @@
     <EmbeddedResource Include="frmNhanVien.resx">
       <DependentUpon>frmNhanVien.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmPhieuBanHang.resx">
+      <DependentUpon>frmPhieuBanHang.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmResetPassword.resx">
       <DependentUpon>frmResetPassword.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSanPham.resx">
+      <DependentUpon>frmSanPham.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmTheLuuDong.resx">
+      <DependentUpon>frmTheLuuDong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmWelcome.resx">
       <DependentUpon>frmWelcome.cs</DependentUpon>
@@ -123,6 +150,10 @@
     <ProjectReference Include="..\DTO_PolyCafe\DTO_PolyCafe.csproj">
       <Project>{772b464d-fa1a-4844-8031-29e4acf31b8f}</Project>
       <Name>DTO_PolyCafe</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Util_Polycafe\Util_Polycafe.csproj">
+      <Project>{335ba624-c22f-4d52-b37e-3e94a68f5d56}</Project>
+      <Name>Util_Polycafe</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
