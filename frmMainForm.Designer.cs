@@ -47,12 +47,12 @@ namespace TB01284_PolyCafe
             this.TSNhanVien = new System.Windows.Forms.ToolStripMenuItem();
             this.TSQuanLi = new System.Windows.Forms.ToolStripMenuItem();
             this.TSDoanhThu = new System.Windows.Forms.ToolStripMenuItem();
+            this.theoNhânViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.theoSảnPhẩmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MSHuongDan = new System.Windows.Forms.ToolStripMenuItem();
             this.báoCaoThốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnMain = new System.Windows.Forms.Panel();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.theoNhânViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.theoSảnPhẩmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.pnMain.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -72,7 +72,7 @@ namespace TB01284_PolyCafe
             this.báoCaoThốngKêToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1261, 28);
+            this.menuStrip1.Size = new System.Drawing.Size(1261, 30);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -148,14 +148,14 @@ namespace TB01284_PolyCafe
             // thẻLưuĐộngToolStripMenuItem
             // 
             this.thẻLưuĐộngToolStripMenuItem.Name = "thẻLưuĐộngToolStripMenuItem";
-            this.thẻLưuĐộngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.thẻLưuĐộngToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.thẻLưuĐộngToolStripMenuItem.Text = "Thẻ lưu động";
             this.thẻLưuĐộngToolStripMenuItem.Click += new System.EventHandler(this.thẻLưuĐộngToolStripMenuItem_Click);
             // 
             // phiếuBánHàngToolStripMenuItem
             // 
             this.phiếuBánHàngToolStripMenuItem.Name = "phiếuBánHàngToolStripMenuItem";
-            this.phiếuBánHàngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.phiếuBánHàngToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.phiếuBánHàngToolStripMenuItem.Text = "Phiếu bán hàng";
             this.phiếuBánHàngToolStripMenuItem.Click += new System.EventHandler(this.phiếuBánHàngToolStripMenuItem_Click);
             // 
@@ -190,6 +190,19 @@ namespace TB01284_PolyCafe
             this.TSDoanhThu.Size = new System.Drawing.Size(92, 24);
             this.TSDoanhThu.Text = "Doanh thu";
             // 
+            // theoNhânViênToolStripMenuItem
+            // 
+            this.theoNhânViênToolStripMenuItem.Name = "theoNhânViênToolStripMenuItem";
+            this.theoNhânViênToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.theoNhânViênToolStripMenuItem.Text = "Theo Nhân viên";
+            this.theoNhânViênToolStripMenuItem.Click += new System.EventHandler(this.theoNhânViênToolStripMenuItem_Click);
+            // 
+            // theoSảnPhẩmToolStripMenuItem
+            // 
+            this.theoSảnPhẩmToolStripMenuItem.Name = "theoSảnPhẩmToolStripMenuItem";
+            this.theoSảnPhẩmToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.theoSảnPhẩmToolStripMenuItem.Text = "Theo Sản phẩm";
+            // 
             // MSHuongDan
             // 
             this.MSHuongDan.Name = "MSHuongDan";
@@ -207,9 +220,9 @@ namespace TB01284_PolyCafe
             this.pnMain.Controls.Add(this.pictureBox1);
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMain.ForeColor = System.Drawing.Color.Crimson;
-            this.pnMain.Location = new System.Drawing.Point(0, 28);
+            this.pnMain.Location = new System.Drawing.Point(0, 30);
             this.pnMain.Name = "pnMain";
-            this.pnMain.Size = new System.Drawing.Size(1261, 654);
+            this.pnMain.Size = new System.Drawing.Size(1261, 652);
             this.pnMain.TabIndex = 1;
             this.pnMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnMain_Paint);
             // 
@@ -222,18 +235,6 @@ namespace TB01284_PolyCafe
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // theoNhânViênToolStripMenuItem
-            // 
-            this.theoNhânViênToolStripMenuItem.Name = "theoNhânViênToolStripMenuItem";
-            this.theoNhânViênToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.theoNhânViênToolStripMenuItem.Text = "Theo Nhân viên";
-            // 
-            // theoSảnPhẩmToolStripMenuItem
-            // 
-            this.theoSảnPhẩmToolStripMenuItem.Name = "theoSảnPhẩmToolStripMenuItem";
-            this.theoSảnPhẩmToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.theoSảnPhẩmToolStripMenuItem.Text = "Theo Sản phẩm";
             // 
             // frmMainForm
             // 

@@ -58,6 +58,12 @@
     <Compile Include="frmChiTietPhieu.Designer.cs">
       <DependentUpon>frmChiTietPhieu.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDoanhThuTheoNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDoanhThuTheoNhanVien.Designer.cs">
+      <DependentUpon>frmDoanhThuTheoNhanVien.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmLoaiSanPham.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -117,6 +123,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="frmChiTietPhieu.resx">
       <DependentUpon>frmChiTietPhieu.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmDoanhThuTheoNhanVien.resx">
+      <DependentUpon>frmDoanhThuTheoNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmLoaiSanPham.resx">
       <DependentUpon>frmLoaiSanPham.cs</DependentUpon>

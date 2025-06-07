@@ -18,7 +18,7 @@ namespace TB01284_PolyCafe
             InitializeComponent();
             progressBar1.Style = ProgressBarStyle.Marquee;
             progressBar1.MarqueeAnimationSpeed = 30;
-            Task.Delay(3000).ContinueWith(t =>
+            Task.Delay(3500).ContinueWith(t =>
             {
                 if (this.IsHandleCreated && !this.IsDisposed)
                 {
