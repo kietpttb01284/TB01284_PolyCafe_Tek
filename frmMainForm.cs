@@ -133,5 +133,15 @@ namespace TB01284_PolyCafe
         {
             openChildForm(new frmSanPham());
         }
+
+        private void phiếuBánHàngToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmPhieuBanHang());
+        }
+
+        private void chiTiếtPhiếuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmChiTietPhieu());
+        }
     }
 }

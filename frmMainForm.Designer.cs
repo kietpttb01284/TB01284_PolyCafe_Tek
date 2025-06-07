@@ -30,6 +30,7 @@ namespace TB01284_PolyCafe
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.TSHeThong = new System.Windows.Forms.ToolStripMenuItem();
             this.TSDoiMatKhau = new System.Windows.Forms.ToolStripMenuItem();
@@ -38,6 +39,7 @@ namespace TB01284_PolyCafe
             this.TSThoat = new System.Windows.Forms.ToolStripMenuItem();
             this.TSDanhMuc = new System.Windows.Forms.ToolStripMenuItem();
             this.TSSanPham = new System.Windows.Forms.ToolStripMenuItem();
+            this.loạiSảnPhẩmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.TSBanHang = new System.Windows.Forms.ToolStripMenuItem();
             this.thẻLưuĐộngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.phiếuBánHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -45,10 +47,15 @@ namespace TB01284_PolyCafe
             this.TSNhanVien = new System.Windows.Forms.ToolStripMenuItem();
             this.TSQuanLi = new System.Windows.Forms.ToolStripMenuItem();
             this.TSDoanhThu = new System.Windows.Forms.ToolStripMenuItem();
-            this.loạiHàngToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.MSHuongDan = new System.Windows.Forms.ToolStripMenuItem();
+            this.báoCaoThốngKêToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pnMain = new System.Windows.Forms.Panel();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.theoNhânViênToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.theoSảnPhẩmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
+            this.pnMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -61,7 +68,8 @@ namespace TB01284_PolyCafe
             this.TSBanHang,
             this.MSNhanVien,
             this.TSDoanhThu,
-            this.MSHuongDan});
+            this.MSHuongDan,
+            this.báoCaoThốngKêToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(1261, 28);
@@ -108,7 +116,8 @@ namespace TB01284_PolyCafe
             // TSDanhMuc
             // 
             this.TSDanhMuc.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.TSSanPham});
+            this.TSSanPham,
+            this.loạiSảnPhẩmToolStripMenuItem});
             this.TSDanhMuc.Name = "TSDanhMuc";
             this.TSDanhMuc.Size = new System.Drawing.Size(90, 24);
             this.TSDanhMuc.Text = "Danh mục";
@@ -116,9 +125,15 @@ namespace TB01284_PolyCafe
             // TSSanPham
             // 
             this.TSSanPham.Name = "TSSanPham";
-            this.TSSanPham.Size = new System.Drawing.Size(224, 26);
+            this.TSSanPham.Size = new System.Drawing.Size(188, 26);
             this.TSSanPham.Text = "Sản phẩm";
             this.TSSanPham.Click += new System.EventHandler(this.TSSanPham_Click);
+            // 
+            // loạiSảnPhẩmToolStripMenuItem
+            // 
+            this.loạiSảnPhẩmToolStripMenuItem.Name = "loạiSảnPhẩmToolStripMenuItem";
+            this.loạiSảnPhẩmToolStripMenuItem.Size = new System.Drawing.Size(188, 26);
+            this.loạiSảnPhẩmToolStripMenuItem.Text = "Loại sản phẩm";
             // 
             // TSBanHang
             // 
@@ -133,15 +148,16 @@ namespace TB01284_PolyCafe
             // thẻLưuĐộngToolStripMenuItem
             // 
             this.thẻLưuĐộngToolStripMenuItem.Name = "thẻLưuĐộngToolStripMenuItem";
-            this.thẻLưuĐộngToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.thẻLưuĐộngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.thẻLưuĐộngToolStripMenuItem.Text = "Thẻ lưu động";
             this.thẻLưuĐộngToolStripMenuItem.Click += new System.EventHandler(this.thẻLưuĐộngToolStripMenuItem_Click);
             // 
             // phiếuBánHàngToolStripMenuItem
             // 
             this.phiếuBánHàngToolStripMenuItem.Name = "phiếuBánHàngToolStripMenuItem";
-            this.phiếuBánHàngToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
+            this.phiếuBánHàngToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
             this.phiếuBánHàngToolStripMenuItem.Text = "Phiếu bán hàng";
+            this.phiếuBánHàngToolStripMenuItem.Click += new System.EventHandler(this.phiếuBánHàngToolStripMenuItem_Click);
             // 
             // MSNhanVien
             // 
@@ -168,16 +184,11 @@ namespace TB01284_PolyCafe
             // TSDoanhThu
             // 
             this.TSDoanhThu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.loạiHàngToolStripMenuItem});
+            this.theoNhânViênToolStripMenuItem,
+            this.theoSảnPhẩmToolStripMenuItem});
             this.TSDoanhThu.Name = "TSDoanhThu";
             this.TSDoanhThu.Size = new System.Drawing.Size(92, 24);
             this.TSDoanhThu.Text = "Doanh thu";
-            // 
-            // loạiHàngToolStripMenuItem
-            // 
-            this.loạiHàngToolStripMenuItem.Name = "loạiHàngToolStripMenuItem";
-            this.loạiHàngToolStripMenuItem.Size = new System.Drawing.Size(157, 26);
-            this.loạiHàngToolStripMenuItem.Text = "Loại hàng";
             // 
             // MSHuongDan
             // 
@@ -185,8 +196,15 @@ namespace TB01284_PolyCafe
             this.MSHuongDan.Size = new System.Drawing.Size(98, 24);
             this.MSHuongDan.Text = "Hướng dẫn";
             // 
+            // báoCaoThốngKêToolStripMenuItem
+            // 
+            this.báoCaoThốngKêToolStripMenuItem.Name = "báoCaoThốngKêToolStripMenuItem";
+            this.báoCaoThốngKêToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
+            this.báoCaoThốngKêToolStripMenuItem.Text = "Báo cáo thống kê";
+            // 
             // pnMain
             // 
+            this.pnMain.Controls.Add(this.pictureBox1);
             this.pnMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnMain.ForeColor = System.Drawing.Color.Crimson;
             this.pnMain.Location = new System.Drawing.Point(0, 28);
@@ -194,6 +212,28 @@ namespace TB01284_PolyCafe
             this.pnMain.Size = new System.Drawing.Size(1261, 654);
             this.pnMain.TabIndex = 1;
             this.pnMain.Paint += new System.Windows.Forms.PaintEventHandler(this.pnMain_Paint);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(264, 20);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(694, 608);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // theoNhânViênToolStripMenuItem
+            // 
+            this.theoNhânViênToolStripMenuItem.Name = "theoNhânViênToolStripMenuItem";
+            this.theoNhânViênToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.theoNhânViênToolStripMenuItem.Text = "Theo Nhân viên";
+            // 
+            // theoSảnPhẩmToolStripMenuItem
+            // 
+            this.theoSảnPhẩmToolStripMenuItem.Name = "theoSảnPhẩmToolStripMenuItem";
+            this.theoSảnPhẩmToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.theoSảnPhẩmToolStripMenuItem.Text = "Theo Sản phẩm";
             // 
             // frmMainForm
             // 
@@ -210,6 +250,8 @@ namespace TB01284_PolyCafe
             this.Load += new System.EventHandler(this.frmMainForm_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.pnMain.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -230,10 +272,14 @@ namespace TB01284_PolyCafe
         private System.Windows.Forms.ToolStripMenuItem MSHuongDan;
         private System.Windows.Forms.Panel pnMain;
         private ToolStripMenuItem TSSanPham;
-        private ToolStripMenuItem loạiHàngToolStripMenuItem;
         private ToolStripMenuItem TSNhanVien;
         private ToolStripMenuItem TSQuanLi;
         private ToolStripMenuItem thẻLưuĐộngToolStripMenuItem;
         private ToolStripMenuItem phiếuBánHàngToolStripMenuItem;
+        private ToolStripMenuItem loạiSảnPhẩmToolStripMenuItem;
+        private ToolStripMenuItem báoCaoThốngKêToolStripMenuItem;
+        private PictureBox pictureBox1;
+        private ToolStripMenuItem theoNhânViênToolStripMenuItem;
+        private ToolStripMenuItem theoSảnPhẩmToolStripMenuItem;
     }
 }

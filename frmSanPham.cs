@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.IO;
 using System.Windows.Forms;
 using BUS_Poly;
 using DTO_PolyCafe;
@@ -12,13 +14,12 @@ namespace TB01284_PolyCafe
         public frmSanPham()
         {
             InitializeComponent();
-            txtDonGia.Mask = "000000.00";
+            //txtDonGia.Mask = "000000.00";
         }
 
         private void frmSanPham_Load(object sender, EventArgs e)
         {
             ClearForm();
-            ClearFormLoai();
             LoadLoaiSanPham();
             LoadDanhSachSanPham();
         }
@@ -38,7 +39,8 @@ namespace TB01284_PolyCafe
         {
             try
             {
-                List<LoaiSanPham> dsLoai = bus_LoaiSanPham.GetLoaiSanPhamList();
+                BUS_LoaiSanPham bUSLoaiSanPham = new BUS_LoaiSanPham();
+                List<LoaiSanPham> dsLoai = bUSLoaiSanPham.GetLoaiSanPhamList();
                 CBLoaiSanPham.DataSource = dsLoai;
                 CBLoaiSanPham.ValueMember = "tenLoai";
                 CBLoaiSanPham.DisplayMember = "TenLoai";
@@ -57,7 +59,7 @@ namespace TB01284_PolyCafe
             DataSanPham.DataSource = lstSP;
         }
 
-        private void butThem_Click(object sender, EventArgs e)
+        private void butThem_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -65,6 +67,7 @@ namespace TB01284_PolyCafe
                 string donGiaText = txtDonGia.Text.Trim();
                 string tenLoai = CBLoaiSanPham.SelectedValue?.ToString();
                 bool trangThai = rbutConBan.Checked;
+                string savapath = string.Empty; // Đường dẫn lưu ảnh, nếu có
 
                 // Kiểm tra dữ liệu nhập vào
                 if (string.IsNullOrEmpty(tenSP) || string.IsNullOrEmpty(donGiaText) || string.IsNullOrEmpty(tenLoai))
@@ -80,6 +83,9 @@ namespace TB01284_PolyCafe
                     return;
                 }
 
+                string savepath = ImageUtil.SaveImage(PicSanPham.Image, "Uploads");
+
+
                 // Tạo đối tượng sản phẩm
                 SanPham sp = new SanPham
                 {
@@ -87,18 +93,24 @@ namespace TB01284_PolyCafe
                     DonGia = donGia,
                     TenLoai = tenLoai,
                     TrangThai = trangThai,
-                    HinhAnh = ""
+                    HinhAnh = savapath
                 };
+
+
 
                 // Thêm sản phẩm vào cơ sở dữ liệu
                 BUS_SanPham BUS_SanPham = new BUS_SanPham();
-                BUS_SanPham.InsertSanPham(sp);
+                string result = BUS_SanPham.InsertSanPham(sp);
 
+                if (!string.IsNullOrEmpty(result))
+                {
+                    MessageBox.Show(result, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
                 MessageBox.Show("Thêm sản phẩm thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
                 // Làm mới form sau khi thêm
                 ClearForm();
-                LoadDanhSachSanPham();
+                LoadDanhSachSanPham(); // Đảm bảo gọi lại để cập nhật danh sách
             }
             catch (Exception ex)
             {
@@ -106,7 +118,7 @@ namespace TB01284_PolyCafe
             }
         }
 
-        private void butXoa_Click(object sender, EventArgs e)
+        private void butXoa_Click_1(object sender, EventArgs e)
         {
             string maSP = txtMaSanPham.Text.Trim();
             string tenSP = string.Empty;
@@ -161,7 +173,7 @@ namespace TB01284_PolyCafe
             }
         }
 
-        private void butSua_Click(object sender, EventArgs e)
+        private void butSua_Click_1(object sender, EventArgs e)
         {
             try
             {
@@ -216,216 +228,83 @@ namespace TB01284_PolyCafe
             }
         }
 
-        private void butLamMoi_Click(object sender, EventArgs e)
+        private void butLamMoi_Click_1(object sender, EventArgs e)
         {
             ClearForm();
             LoadLoaiSanPham();
             LoadDanhSachSanPham();
         }
 
-        private void DataSanPham_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        private void groupBox1_Enter(object sender, EventArgs e)
         {
+
+        }
+
+        private void DataSanPham_CellDoubleClick_1(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.RowIndex >= DataSanPham.Rows.Count)
+                return;
+
             DataGridViewRow row = DataSanPham.Rows[e.RowIndex];
-            txtMaSanPham.Text = row.Cells["MaSanPham"].Value.ToString();
-            txtTenSanPham.Text = row.Cells["TenSanPham"].Value.ToString();
-            txtDonGia.Text = row.Cells["DonGia"].Value.ToString();
-            CBLoaiSanPham.SelectedValue = row.Cells["tenLoai"].Value.ToString();
-            bool trangThai = Convert.ToBoolean(row.Cells["TrangThai"].Value);
-            if (trangThai)
+
+            // Gán dữ liệu từ dòng được chọn lên các controls
+            txtMaSanPham.Text = row.Cells["MaSanPham"].Value?.ToString();
+            txtTenSanPham.Text = row.Cells["TenSanPham"].Value?.ToString();
+            txtDonGia.Text = row.Cells["DonGia"].Value?.ToString();
+
+            string tenLoai = row.Cells["TenLoai"].Value?.ToString();
+            if (!string.IsNullOrEmpty(tenLoai))
             {
-                rbutConBan.Checked = true;
+                CBLoaiSanPham.SelectedValue = tenLoai;
+            }
+
+            string hinhAnh = row.Cells["HinhAnh"].Value?.ToString();
+            if (!string.IsNullOrEmpty(hinhAnh))
+            {
+                string path = Path.Combine(AppContext.BaseDirectory, hinhAnh);
+
+                try
+                {
+                    PicSanPham.Image = ImageUtil.LoadImage(path);
+                    PicSanPham.Tag = path;
+                }
+                catch
+                {
+                    PicSanPham.Image = TB01284_PolyCafe.Properties.Resources.defalt_image;
+                    PicSanPham.Tag = null;
+                }
             }
             else
             {
-                rbutNgungBan.Checked = true;
+                PicSanPham.Image = TB01284_PolyCafe.Properties.Resources.defalt_image;
+                PicSanPham.Tag = null;
             }
+
+            bool trangThai = false;
+            bool.TryParse(row.Cells["TrangThai"].Value?.ToString(), out trangThai);
+            rbutConBan.Checked = trangThai;
+            rbutNgungBan.Checked = !trangThai;
+
+            // Điều chỉnh trạng thái nút
             butThem.Enabled = false;
             butSua.Enabled = true;
             butXoa.Enabled = true;
         }
 
-        private void frmSanPham_Resize(object sender, EventArgs e)
+        private void butChonAnh_Click_1(object sender, EventArgs e)
         {
-            label1.Left = (this.ClientSize.Width - label1.Width) / 2;
-            label1.Top = 10;
-        }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        private void ClearFormLoai()
-        {
-            butThemLoai.Enabled = true;
-            butSuaLoai.Enabled = false;
-            butXoaLoai.Enabled = true;
-            txtMaLoai.Clear();
-            txtGhiChu.Clear();
-            txtTenLoai.Clear();
-        }
-
-        private void LoadDanhSachLoaiSP()
-        {
-            BUS_SanPham busLoaiSp = new BUS_SanPham();
-            DataLoaiSanPham.DataSource = null;
-            DataLoaiSanPham.DataSource = busLoaiSp.GetLoaiSanPhamList();
-            DataLoaiSanPham.Columns["MaLoai"].HeaderText = "Mã Loại";
-            DataLoaiSanPham.Columns["TenLoai"].HeaderText = "Tên Loại";
-            DataLoaiSanPham.Columns["GhiChu"].HeaderText = "Ghi Chú";
-
-            DataLoaiSanPham.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-        }
-
-
-        private void butTthem_Click(object sender, EventArgs e)
-        {
-            string maLoai = txtMaLoai.Text.Trim();
-            string tenLoai = txtTenLoai.Text.Trim();
-            string ghiChu = txtGhiChu.Text.Trim();
-
-
-            if (string.IsNullOrEmpty(tenLoai))
+            using (OpenFileDialog openFileDialog = new OpenFileDialog())
             {
-                MessageBox.Show("Vui lòng điền đầy đủ thông tin thẻ lưu động.");
-                return;
-            }
+                openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp|All Files|*.*";
+                openFileDialog.Title = "Chọn ảnh sản phẩm";
 
-            LoaiSanPham loai = new LoaiSanPham
-            {
-                MaLoai = maLoai,
-                TenLoai = tenLoai,
-                GhiChu = ghiChu
-            };
-            BUS_SanPham bus = new BUS_SanPham();
-            string result = bus.InsertLoaiSanPham(loai);
-
-            if (string.IsNullOrEmpty(result))
-            {
-                MessageBox.Show("Cập nhật thông tin thành công");
-                ClearFormLoai();
-                LoadLoaiSanPham();
-            }
-            else
-            {
-                MessageBox.Show(result);
-            }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            string maLoai = txtMaLoai.Text.Trim();
-            string tenLoai = txtTenLoai.Text.Trim();
-            string ghiChu = txtGhiChu.Text.Trim();
-            if (string.IsNullOrEmpty(maLoai))
-            {
-                if (DataLoaiSanPham.SelectedRows.Count > 0)
+                if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    DataGridViewRow selectedRow = DataLoaiSanPham.SelectedRows[0];
-                    maLoai = selectedRow.Cells["MaLoai"].Value.ToString();
-                    tenLoai = selectedRow.Cells["TenLoai"].Value.ToString();
-                    ghiChu = selectedRow.Cells["GhiChu"].Value.ToString();
-                }
-                else
-                {
-                    MessageBox.Show("Vui lòng chọn thông tin loại sản phẩm cần xóa xóa!", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
+                    string imagePath = openFileDialog.FileName;
+                    PicSanPham.Image = Image.FromFile(imagePath);
+                    PicSanPham.Tag = imagePath; // Ghi nhớ đường dẫn ảnh để lưu về sau
                 }
             }
-
-            if (string.IsNullOrEmpty(maLoai))
-            {
-                MessageBox.Show("Xóa không thành công.");
-                return;
-            }
-
-            DialogResult result = MessageBox.Show($"Bạn có chắc chắn muốn xóa loại sản phẩm {maLoai} - {tenLoai}?", "Xác nhận xóa",
-                MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
-            {
-                BUS_SanPham bus = new BUS_SanPham();
-                string kq = bus.DeleteLoaiSanPham(maLoai);
-
-                if (string.IsNullOrEmpty(kq))
-                {
-                    MessageBox.Show($"Xóa thông tin loại sản phẩm {maLoai} - {tenLoai} thành công!", "Thông báo",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    ClearForm();
-                    LoadDanhSachLoaiSP();
-                }
-                else
-                {
-                    MessageBox.Show(kq, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
-
-        private void DataLoaiSanPham_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
-        {
-            DataGridViewRow row = DataLoaiSanPham.Rows[e.RowIndex];
-            // Đổ dữ liệu vào các ô nhập liệu trên form
-            txtMaLoai.Text = row.Cells["MaLoai"].Value.ToString();
-            txtTenLoai.Text = row.Cells["TenLoai"].Value.ToString();
-            txtGhiChu.Text = row.Cells["GhiChu"].Value.ToString();
-
-            // Bật nút "Sửa"
-            butThemLoai.Enabled = false;
-            butSuaLoai.Enabled = true;
-            butXoaLoai.Enabled = true;
-            // Tắt chỉnh sửa mã thẻ
-            txtMaLoai.Enabled = false;
-        }
-
-        private void DataLoaiSanPham_Resize(object sender, EventArgs e)
-        {
-            label1.Left = (this.ClientSize.Width - label1.Width) / 2;
-            label1.Top = 10;
-        }
-
-        private void DataSanPham_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
         }
     }
 }
