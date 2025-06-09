@@ -148,5 +148,15 @@ namespace TB01284_PolyCafe
         {
             openChildForm(new frmDoanhThuTheoNhanVien());
         }
+
+        private void theoSảnPhẩmToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            openChildForm(new frmDoanhThuTheoSanPham());
+        }
+
+        private void báoCaoThốngKêToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

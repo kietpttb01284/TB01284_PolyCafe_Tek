@@ -364,5 +364,114 @@ namespace TB01284_PolyCafe
             }
 
         }
+
+        private void butTimKiem_Click(object sender, EventArgs e)
+        {
+            string keyword = txtTimKiem.Text.Trim();
+            if (string.IsNullOrEmpty(keyword))
+            {
+                MessageBox.Show("Vui lòng nhập từ khóa để tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                bool found = false;
+                List<int> foundRows = new List<int>();
+
+                foreach (DataGridViewRow row in DataPhieuBanHang.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    bool rowMatches = false;
+
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null)
+                        {
+                            string cellText = cell.Value.ToString().Trim();
+                            if (cellText.ToLower().Contains(keyword.ToLower()))
+                            {
+                                rowMatches = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (rowMatches)
+                    {
+                        foundRows.Add(row.Index);
+                        found = true;
+                    }
+                }
+
+                if (found)
+                {
+                    DataPhieuBanHang.ClearSelection();
+
+                    foreach (int rowIndex in foundRows)
+                    {
+                        DataPhieuBanHang.Rows[rowIndex].Selected = true;
+                    }
+
+                    if (foundRows.Count > 0)
+                    {
+                        DataPhieuBanHang.FirstDisplayedScrollingRowIndex = foundRows[0];
+
+                        if (foundRows.Count == 1)
+                        {
+                            DataGridViewRow selectedRow = DataPhieuBanHang.Rows[foundRows[0]];
+                            txtMaPhieu.Text = selectedRow.Cells["MaPhieu"].Value.ToString();
+                            CBMaThe.SelectedValue = selectedRow.Cells["MaThe"].Value.ToString();
+                            CBNhanVien.SelectedValue = selectedRow.Cells["MaNhanVien"].Value.ToString();
+                            TPNgayTao.Text = selectedRow.Cells["NgayTao"].Value.ToString();
+
+                            bool trangThai = Convert.ToBoolean(selectedRow.Cells["TrangThai"].Value);
+                            if (trangThai)
+                            {
+                                rbutDaThanhToan.Checked = true;
+                                rbutDaThanhToan.Enabled = false;
+                                rbutChoXacNhan.Enabled = false;
+                                butSua.Enabled = false;
+                                butXoa.Enabled = false;
+                                butThem.Enabled = false;
+                            }
+                            else
+                            {
+                                rbutChoXacNhan.Checked = true;
+                                rbutDaThanhToan.Enabled = true;
+                                rbutChoXacNhan.Enabled = true;
+                                butSua.Enabled = true;
+                                butXoa.Enabled = true;
+                                butThem.Enabled = false;
+                            }
+                        }
+                    }
+
+                    MessageBox.Show($"Tìm thấy {foundRows.Count} kết quả khớp với từ khóa: '{keyword}'",
+                        "Kết quả tìm kiếm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Không tìm thấy kết quả nào khớp với từ khóa: '{keyword}'",
+                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataPhieuBanHang.ClearSelection();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                butTimKiem.PerformClick();
+            }
+        }
+
+
     }
 }

@@ -193,15 +193,16 @@ namespace TB01284_PolyCafe
             // theoNhânViênToolStripMenuItem
             // 
             this.theoNhânViênToolStripMenuItem.Name = "theoNhânViênToolStripMenuItem";
-            this.theoNhânViênToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.theoNhânViênToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
             this.theoNhânViênToolStripMenuItem.Text = "Theo Nhân viên";
             this.theoNhânViênToolStripMenuItem.Click += new System.EventHandler(this.theoNhânViênToolStripMenuItem_Click);
             // 
             // theoSảnPhẩmToolStripMenuItem
             // 
             this.theoSảnPhẩmToolStripMenuItem.Name = "theoSảnPhẩmToolStripMenuItem";
-            this.theoSảnPhẩmToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.theoSảnPhẩmToolStripMenuItem.Size = new System.Drawing.Size(195, 26);
             this.theoSảnPhẩmToolStripMenuItem.Text = "Theo Sản phẩm";
+            this.theoSảnPhẩmToolStripMenuItem.Click += new System.EventHandler(this.theoSảnPhẩmToolStripMenuItem_Click);
             // 
             // MSHuongDan
             // 
@@ -214,6 +215,7 @@ namespace TB01284_PolyCafe
             this.báoCaoThốngKêToolStripMenuItem.Name = "báoCaoThốngKêToolStripMenuItem";
             this.báoCaoThốngKêToolStripMenuItem.Size = new System.Drawing.Size(139, 24);
             this.báoCaoThốngKêToolStripMenuItem.Text = "Báo cáo thống kê";
+            this.báoCaoThốngKêToolStripMenuItem.Click += new System.EventHandler(this.báoCaoThốngKêToolStripMenuItem_Click);
             // 
             // pnMain
             // 

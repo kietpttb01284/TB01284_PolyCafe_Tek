@@ -65,6 +65,7 @@
             this.butTimKiem2.TabIndex = 42;
             this.butTimKiem2.Text = "Tìm kiếm";
             this.butTimKiem2.UseVisualStyleBackColor = true;
+            this.butTimKiem2.Click += new System.EventHandler(this.butTimKiem2_Click);
             // 
             // butLamMoi
             // 
@@ -102,6 +103,7 @@
             this.txtTimKiem2.Name = "txtTimKiem2";
             this.txtTimKiem2.Size = new System.Drawing.Size(271, 22);
             this.txtTimKiem2.TabIndex = 37;
+            this.txtTimKiem2.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTimKiem2_KeyDown);
             // 
             // label7
             // 

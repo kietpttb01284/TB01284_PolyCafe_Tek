@@ -306,5 +306,89 @@ namespace TB01284_PolyCafe
                 }
             }
         }
+
+        private void butTimKiem_Click(object sender, EventArgs e)
+        {
+            string keyword = txtTimKiem.Text.Trim();
+            if (string.IsNullOrEmpty(keyword))
+            {
+                MessageBox.Show("Vui lòng nhập từ khóa để tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                bool found = false;
+                List<int> foundRows = new List<int>();
+
+                foreach (DataGridViewRow row in DataSanPham.Rows)
+                {
+                    if (row.IsNewRow) continue;
+
+                    bool rowMatches = false;
+
+                    foreach (DataGridViewCell cell in row.Cells)
+                    {
+                        if (cell.Value != null)
+                        {
+                            string cellText = cell.Value.ToString().Trim();
+                            if (cellText.ToLower().Contains(keyword.ToLower()))
+                            {
+                                rowMatches = true;
+                                break;
+                            }
+                        }
+                    }
+
+                    if (rowMatches)
+                    {
+                        foundRows.Add(row.Index);
+                        found = true;
+                    }
+                }
+
+                if (found)
+                {
+                    DataSanPham.ClearSelection();
+
+                    foreach (int rowIndex in foundRows)
+                    {
+                        DataSanPham.Rows[rowIndex].Selected = true;
+                    }
+
+                    if (foundRows.Count > 0)
+                    {
+                        DataSanPham.FirstDisplayedScrollingRowIndex = foundRows[0];
+
+                        // Nếu chỉ tìm thấy 1 dòng → đổ dữ liệu vào form
+                        if (foundRows.Count == 1)
+                        {
+                            DataSanPham_CellDoubleClick_1(this, new DataGridViewCellEventArgs(0, foundRows[0]));
+                        }
+                    }
+
+                    MessageBox.Show($"Tìm thấy {foundRows.Count} kết quả khớp với từ khóa: '{keyword}'",
+                        "Kết quả tìm kiếm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    MessageBox.Show($"Không tìm thấy kết quả nào khớp với từ khóa: '{keyword}'",
+                        "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    DataSanPham.ClearSelection();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                butTimKiem.PerformClick();
+            }
+        }
     }
 }

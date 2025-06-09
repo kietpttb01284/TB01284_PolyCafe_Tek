@@ -72,6 +72,7 @@
             this.butTimKiem.TabIndex = 33;
             this.butTimKiem.Text = "Tìm kiếm";
             this.butTimKiem.UseVisualStyleBackColor = true;
+            this.butTimKiem.Click += new System.EventHandler(this.butTimKiem_Click);
             // 
             // butLamMoi
             // 
@@ -109,6 +110,7 @@
             this.txtTimKiem.Name = "txtTimKiem";
             this.txtTimKiem.Size = new System.Drawing.Size(271, 22);
             this.txtTimKiem.TabIndex = 28;
+            this.txtTimKiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTimKiem_KeyDown);
             // 
             // label10
             // 

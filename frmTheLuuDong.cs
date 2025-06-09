@@ -208,6 +208,89 @@ namespace TB01284_PolyCafe
 
         private void butTimKiem_Click(object sender, EventArgs e)
         {
+            //string keyword = txtTimKiemThe.Text.Trim();
+            //if (string.IsNullOrEmpty(keyword))
+            //{
+            //    MessageBox.Show("Vui lòng nhập từ khóa để tìm kiếm.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            //    return;
+            //}
+
+            //try
+            //{
+            //    bool found = false;
+            //    List<int> foundRows = new List<int>();
+
+            //    foreach (DataGridViewRow row in DataTheLuuDong.Rows)
+            //    {
+            //        if (row.IsNewRow) continue;
+
+            //        bool rowMatches = false;
+
+            //        foreach (DataGridViewCell cell in row.Cells)
+            //        {
+            //            if (cell.Value != null)
+            //            {
+            //                string cellText = cell.Value.ToString().Trim();
+            //                if (cellText.ToLower().Contains(keyword.ToLower()))
+            //                {
+            //                    rowMatches = true;
+            //                    break;
+            //                }
+            //            }
+            //        }
+
+            //        if (rowMatches)
+            //        {
+            //            foundRows.Add(row.Index);
+            //            found = true;
+            //        }
+            //    }
+
+            //    if (found)
+            //    {
+            //        DataTheLuuDong.ClearSelection();
+
+            //        foreach (int rowIndex in foundRows)
+            //        {
+            //            DataTheLuuDong.Rows[rowIndex].Selected = true;
+            //        }
+
+            //        if (foundRows.Count > 0)
+            //        {
+            //            DataTheLuuDong.FirstDisplayedScrollingRowIndex = foundRows[0];
+
+            //            // Nếu chỉ có 1 kết quả thì đổ dữ liệu vào form
+            //            if (foundRows.Count == 1)
+            //            {
+            //                DataGridViewRow selectedRow = DataTheLuuDong.Rows[foundRows[0]];
+            //                txtMaThe.Text = selectedRow.Cells["MaThe"].Value.ToString();
+            //                txtTenNguoiSoHuu.Text = selectedRow.Cells["ChuSoHuu"].Value.ToString();
+
+            //                bool trangThai = Convert.ToBoolean(selectedRow.Cells["TrangThai"].Value);
+            //                rbutHoatDong.Checked = trangThai;
+
+            //                // Cập nhật trạng thái nút
+            //                txtMaThe.Enabled = false;
+            //                butThem.Enabled = false;
+            //                butSua.Enabled = true;
+            //                butXoa.Enabled = true;
+            //            }
+            //        }
+
+            //        MessageBox.Show($"Tìm thấy {foundRows.Count} kết quả khớp với từ khóa: '{keyword}'",
+            //            "Kết quả tìm kiếm", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show($"Không tìm thấy kết quả nào khớp với từ khóa: '{keyword}'",
+            //            "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //        DataTheLuuDong.ClearSelection();
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    MessageBox.Show("Lỗi khi tìm kiếm: " + ex.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
             string tuKhoa = txtTimKiem.Text.Trim().ToLower();
 
             if (string.IsNullOrEmpty(tuKhoa))
@@ -230,6 +313,14 @@ namespace TB01284_PolyCafe
             if (ketQua.Count == 0)
             {
                 MessageBox.Show("Không tìm thấy kết quả phù hợp.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+        }
+
+        private void butTimKiem_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                butTimKiem.PerformClick();
             }
         }
     }

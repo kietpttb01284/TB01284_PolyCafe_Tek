@@ -93,6 +93,7 @@
             this.butTimKiem.Text = "Tìm kiếm";
             this.butTimKiem.UseVisualStyleBackColor = true;
             this.butTimKiem.Click += new System.EventHandler(this.butTimKiem_Click);
+            this.butTimKiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.butTimKiem_KeyDown);
             // 
             // groupBox1
             // 
